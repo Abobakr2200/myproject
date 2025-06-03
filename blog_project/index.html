@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مدونة Flexbox</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#">الرئيسية</a></li>
+                <li><a href="#">مقالات</a></li>
+                <li><a href="#">حول</a></li>
+                <li><a href="#">اتصل بنا</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>أحدث المقالات</h1>
+        <section class="blog-section">
+            <aside class="post-list">
+                <h2>قائمة المقالات</h2>
+                <ul>
+                    <li><a href="#post1">عنوان المقال الأول</a></li>
+                    <li><a href="#post2">عنوان المقال الثاني</a></li>
+                    <li><a href="#post3">عنوان المقال الثالث</a></li>
+                    <li><a href="#post4">عنوان المقال الرابع</a></li>
+                </ul>
+            </aside>
+            <article class="post-detail" id="post1">
+                <h2>عنوان المقال الأول</h2>
+                <p>هذا هو محتوى المقال الأول. يمكن أن يحتوي على تفاصيل كثيرة وشروحات وافية حول الموضوع المطروح. تصميم هذا القسم سيعرض تفاصيل المقال المحدد من القائمة الجانبية.</p>
+                <p>فقرة إضافية لتوضيح المحتوى وكيف سيبدو النص داخل تفاصيل المقال.</p>
+            </article>
+            <!-- Add more post-detail articles as needed, initially hidden -->
+             <article class="post-detail" id="post2" style="display: none;">
+                <h2>عنوان المقال الثاني</h2>
+                <p>محتوى المقال الثاني يظهر هنا عند النقر على الرابط المقابل في القائمة.</p>
+            </article>
+             <article class="post-detail" id="post3" style="display: none;">
+                <h2>عنوان المقال الثالث</h2>
+                <p>محتوى المقال الثالث يظهر هنا.</p>
+            </article>
+             <article class="post-detail" id="post4" style="display: none;">
+                <h2>عنوان المقال الرابع</h2>
+                <p>محتوى المقال الرابع يظهر هنا.</p>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 مدونة Flexbox. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <!-- Add JavaScript later if needed for post switching -->
+
+</body>
+</html>
