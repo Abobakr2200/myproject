@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تطبيق قائمة المهام</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>قائمة المهام</h1>
+        </header>
+        
+        <div class="task-form">
+            <h2>إضافة مهمة جديدة</h2>
+            <form id="add-task-form">
+                <div class="form-group">
+                    <label for="task-title">عنوان المهمة:</label>
+                    <input type="text" id="task-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="task-description">وصف المهمة:</label>
+                    <textarea id="task-description" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit" id="add-task-btn">إضافة مهمة</button>
+                </div>
+            </form>
+        </div>
+        
+        <div class="tasks-container">
+            <h2>المهام الحالية</h2>
+            <div id="tasks-list">
+                <!-- سيتم إضافة المهام هنا بواسطة JavaScript -->
+            </div>
+        </div>
+        
+        <!-- نموذج تعديل المهمة (مخفي بشكل افتراضي) -->
+        <div class="edit-task-modal" id="edit-task-modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2>تعديل المهمة</h2>
+                <form id="edit-task-form">
+                    <input type="hidden" id="edit-task-id">
+                    <div class="form-group">
+                        <label for="edit-task-title">عنوان المهمة:</label>
+                        <input type="text" id="edit-task-title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-task-description">وصف المهمة:</label>
+                        <textarea id="edit-task-description" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" id="save-edit-btn">حفظ التغييرات</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
