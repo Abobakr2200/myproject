@@ -1,0 +1,398 @@
+/* Global Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  position: relative;
+}
+
+/* Animated background particles */
+.App::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(120, 119, 198, 0.2) 0%, transparent 50%);
+  animation: float 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+/* Main Container */
+.stopwatch-container {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.2);
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stopwatch-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 30px 60px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+.stopwatch-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.5s;
+}
+
+.stopwatch-container:hover::before {
+  left: 100%;
+}
+
+/* Title */
+h1 {
+  color: #4a5568;
+  margin-bottom: 30px;
+  font-size: 2.5em;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+h1::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  border-radius: 2px;
+}
+
+/* Timer Display */
+.timer-display {
+  font-size: 3.5em;
+  margin-bottom: 40px;
+  color: #2d3748;
+  font-variant-numeric: tabular-nums;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.timer-display:hover {
+  transform: scale(1.05);
+}
+
+/* Controls */
+.controls {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.controls button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 15px 25px;
+  border-radius: 12px;
+  font-size: 1.1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.controls button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.controls button:hover::before {
+  left: 100%;
+}
+
+.controls button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+}
+
+.controls button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.controls button:disabled {
+  background: linear-gradient(135deg, #a0aec0 0%, #718096 100%);
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Button specific styles */
+.start-btn {
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%) !important;
+  box-shadow: 0 4px 15px rgba(72, 187, 120, 0.4) !important;
+}
+
+.start-btn:hover:not(:disabled) {
+  box-shadow: 0 8px 25px rgba(72, 187, 120, 0.6) !important;
+}
+
+.stop-btn {
+  background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%) !important;
+  box-shadow: 0 4px 15px rgba(245, 101, 101, 0.4) !important;
+}
+
+.stop-btn:hover:not(:disabled) {
+  box-shadow: 0 8px 25px rgba(245, 101, 101, 0.6) !important;
+}
+
+.reset-btn {
+  background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%) !important;
+  box-shadow: 0 4px 15px rgba(237, 137, 54, 0.4) !important;
+}
+
+.reset-btn:hover:not(:disabled) {
+  box-shadow: 0 8px 25px rgba(237, 137, 54, 0.6) !important;
+}
+
+.lap-btn {
+  background: linear-gradient(135deg, #9f7aea 0%, #805ad5 100%) !important;
+  box-shadow: 0 4px 15px rgba(159, 122, 234, 0.4) !important;
+}
+
+.lap-btn:hover:not(:disabled) {
+  box-shadow: 0 8px 25px rgba(159, 122, 234, 0.6) !important;
+}
+
+/* Laps Container */
+.laps-container {
+  border-top: 2px solid #e2e8f0;
+  padding-top: 30px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.laps-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.laps-container::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+.laps-container::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 4px;
+}
+
+.laps-container::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #5a67d8, #6b46c1);
+}
+
+.laps-container h2 {
+  color: #4a5568;
+  margin-bottom: 20px;
+  font-size: 1.5em;
+  font-weight: 600;
+}
+
+.no-laps {
+  color: #a0aec0;
+  font-style: italic;
+  padding: 20px;
+}
+
+.laps-list {
+  list-style: none;
+  padding: 0;
+}
+
+.laps-list li {
+  background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+  margin-bottom: 10px;
+  padding: 15px 20px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1em;
+  transition: all 0.3s ease;
+  border-left: 4px solid transparent;
+  animation: slideIn 0.5s ease forwards;
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.laps-list li:nth-child(odd) {
+  animation-delay: 0.1s;
+}
+
+.laps-list li:nth-child(even) {
+  animation-delay: 0.2s;
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.laps-list li:hover {
+  transform: translateX(5px);
+  border-left-color: #667eea;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.lap-number {
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.lap-time {
+  font-variant-numeric: tabular-nums;
+  color: #667eea;
+  font-weight: 500;
+}
+
+/* Mobile Responsive Design */
+@media (max-width: 480px) {
+  .App {
+    padding: 10px;
+  }
+
+  .stopwatch-container {
+    padding: 25px;
+    border-radius: 15px;
+  }
+
+  h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+
+  .timer-display {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+  }
+
+  .controls {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 30px;
+  }
+
+  .controls button {
+    padding: 12px 20px;
+    font-size: 1em;
+  }
+
+  .laps-container {
+    max-height: 200px;
+  }
+
+  .laps-list li {
+    padding: 12px 15px;
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 320px) {
+  .timer-display {
+    font-size: 2em;
+  }
+
+  .controls button {
+    padding: 10px 15px;
+    font-size: 0.9em;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus styles for accessibility */
+.controls button:focus {
+  outline: 3px solid rgba(102, 126, 234, 0.5);
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .stopwatch-container {
+    background: white;
+    border: 2px solid black;
+  }
+
+  .timer-display {
+    color: black;
+    -webkit-text-fill-color: black;
+  }
+
+  .controls button {
+    background: black !important;
+    color: white !important;
+    border: 2px solid black !important;
+  }
+}
+
